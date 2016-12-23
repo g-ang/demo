@@ -1,0 +1,53 @@
+﻿<div>
+    <div class="col-md-4" >
+        <p class="pull-right"><button class="btn" (click)="save()">Save</button></p>
+         <div class="form-group">
+            <label>中文标题</label>
+            <input type="text" [(ngModel)]="item.cn_name" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label>标题</label>
+            <input type="text" [(ngModel)]="item.name" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label>Sku</label>
+            <input type="text" [(ngModel)]="item.sku" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label>长</label>
+            <input type="text" [(ngModel)]="item.length" class="form-control">
+            <label>宽</label>
+            <input type="number" [(ngModel)]="item.width" class="form-control">
+            <label>高</label>
+            <input type="number" [(ngModel)]="item.height" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label>重量</label>
+            <input type="number" [(ngModel)]="item.weight" class="form-control">g
+        </div>
+
+        <div class="form-group">
+            <label>Price</label>
+            <input type="number" [(ngModel)]="item.price" class="form-control">
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div *ngIf="item.id==0">
+            <h3>
+                 从1688下载
+                <p class="pull-right"><button class="btn" (click)="donwnload()">下载</button></p>
+            </h3>
+            <div class="form-group">
+                <input class="form-control" [(ngModel)]="down_url" placeholder="请拷贝地址到这里..." />
+            </div>
+        </div>
+        <h3>更新到Ebay <p class="pull-right"><button class="btn btn-danger" (click)="saveToEbay()">Save To Ebay</button>&nbsp;<button class="btn" (click)="bindebay()">Save</button></p></h3>
+        <div class="form-group">
+            <input type="number" [(ngModel)]="item.ebay_itemid" placeholder="请填写ebay的商品ID..." class="form-control">
+        </div>
+    </div>
+</div>

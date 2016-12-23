@@ -1,0 +1,15 @@
+﻿<div class="page-header">
+    <div class="page-title"><h3>我的账号</h3> </div>
+</div>
+
+<div class="col-md-2" *ngIf="auth.isLogin()" >
+    <h3>{{auth.account().nick}}</h3>
+    <ul>
+        <li class="navbar"><a (click)="logout()" href="javascript:void(0);">退出</a></li>
+        <li class="navbar"><a [routerLink]="['/account']">主页</a></li>
+        <li class="navbar"><a  [routerLink]="['/account/memo']">备忘录</a></li>
+    </ul>
+</div>
+<div  [ngClass]="{'col-md-10':auth.isLogin()}">
+    <router-outlet></router-outlet>
+</div>

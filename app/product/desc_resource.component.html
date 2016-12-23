@@ -1,0 +1,31 @@
+﻿<style>
+ .res-img {
+    width: 120px;
+}
+</style>
+<div>
+    <input type="file" [upload]="upload_dir" title="点击添加" (success)="upSuccess($event)" />
+    <table class="table">
+        <thead></thead>
+        <tbody>
+            <tr *ngFor="let res of items">
+                <td style="width:120px;"><img  class="res-img" [src]="res.addr" /></td>
+                <td>
+                    <textarea class="form-control">{{res.addr}}</textarea>
+                    <div class="pull-left">
+                        <div [author]="res.author"></div>
+                    </div>
+                    <div class="pull-left">
+                        {{res.addtime}}
+                    </div>
+                   <div style="clear:both;"></div>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="15"><div *ngIf="total>0" [page]="1" [rowcount]="rowcount" [total]="total" (callback)="listing($event)" ></div></td>
+            </tr>
+        </tfoot>
+    </table>
+</div>

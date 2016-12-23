@@ -1,0 +1,36 @@
+﻿<style>
+       .pages li{
+       	padding: 0px 8px;
+        margin:0px 2px;
+       	list-style-type:none;
+       	float: left;
+   }
+   .pagebox{
+        float:right;
+   	    line-height: 32px;
+   }
+    .pages li{
+        border:1px solid #f4f4f4;
+    }
+   .pages li.act{
+   	    background: #dfdfdf;
+   }
+
+   .pages .reload{
+       background-color:#f4f4f4;
+   }
+</style>
+<div class="pagebox">
+    <ul class="pages">
+        <li class="previous">
+            <a *ngIf="!previousOff" href="javascript:void(0)" (click)="previous()">上一页</a>
+            <span *ngIf="previousOff">上一页</span>
+        </li>
+        <li class="next">
+            <a *ngIf="!nextOff" href="javascript:void(0)" (click)="next()">下一页</a>
+            <span *ngIf="nextOff">下一页</span>
+        </li>
+
+        <li class="reload"><a href="javascript:void(0);" (click)="reload()">刷新</a></li>
+    </ul>
+</div>

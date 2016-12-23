@@ -1,0 +1,45 @@
+﻿<style>
+    .previewimage {
+         position:fixed;
+         top:60px;
+         overflow-x:auto;
+         z-index:6000;
+         border:2px solid #dfdfdf;
+         background-color:#fff;
+    }
+
+    .previewimage .desc{
+        background:#dfdfdf;
+        opacity:0.7;
+        position:absolute;
+        right:1px;
+        top:1px;
+        padding-left:4px;
+    }
+</style>
+<div *ngIf="image"  class="previewimage" >
+        <div  style="padding:0px;margin:0px;">
+            <img src="/res/warehouse/images/{{image.src}}" />
+        </div>
+        <div class="desc">
+            <h3>{{image.title}}</h3>
+            <div class="form-group">
+                <label>尺寸</label>
+                <div>
+                    {{image.width}}*{{image.height}}
+                </div>
+            </div>
+            <div class="form-group">
+                <label>地址</label>
+                <div>
+                    <input class="form-control" value="/res/warehouse/images/{{image.src}}" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label></label>
+                <div>
+                    <button (click)="close()" class="btn">关闭</button>
+                </div>
+            </div>
+        </div>
+</div>

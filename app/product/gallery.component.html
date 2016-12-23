@@ -1,0 +1,98 @@
+﻿<style>
+    .res-img {
+       width: 120px;
+    }
+
+    .upload-box { }
+
+    .gallery{
+        clear:both;
+    }
+
+    .gallery li{
+        float:left;
+        width:120px;
+        margin-right:6px;
+        position:relative;
+    }
+
+    .gallery .uploadbutton {
+    
+        opacity:0;
+        cursor:pointer;
+        z-index:2222;
+    }
+
+    .gallery .uploadtxt {
+        position:absolute;
+        text-align:center;
+        cursor:pointer;
+       
+    }
+
+    .dropdown-menu{
+        display:block;
+    }
+
+    .res-flags li{
+        border-radius:12px;
+        background-color:#dfdfdf;
+        margin-right:4px;
+        display:inline;
+        padding:2px 6px;
+    }
+</style>
+<div class="row">
+    <div class="col-md-7">
+        <div style="overflow-y:auto; height:99%;">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td style="height:42px;"><input type="checkbox" (click)="selectAll($event)" /></td>
+                        <td colspan="15" style="height:42px;">
+                            <div [hidden]="selectedIds.length==0">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" (click)="hiddenFlagSelect=!hiddenFlagSelect">
+                                        标记为
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu" [hidden]="hiddenFlagSelect" [style.display]="hiddenFlagSelect ? 'none' : 'block'">
+                                        <li *ngFor="let flag of flags"><input type="checkbox" class="btn btn-sm" id="flag{{flag.id}}" [(ngModel)]="flag.selected" /><label for="flag{{flag.id}}">{{flag.title}}</label></li>
+                                        <li class="divider"></li>
+                                        <li><button class="btn" (click)="setFlag()">确定</button><button class="btn" (click)="hiddenFlagSelect=true;">取消</button></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let res of resources" (click)="selected(res)">
+                        <th><input type="checkbox" [(ngModel)]="res.selected" /></th>
+                        <td style="width:120px;"><img class="res-img" [src]="res.addr" /></td>
+                        <td>
+                            <ul class="res-flags">
+                                <li *ngFor="let flag of res.flags">{{flag.title}}</li>
+                            </ul>
+                        </td>
+                        <td><div [author]="res.author"></div></td>
+                        <td>{{res.addtime}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <div >
+            <ul class="gallery">
+                <li class="upload-box" *ngFor="let flag of flags">
+                 {{flag.title}}<small>({{sumFlagRes(flag.id)}})</small>
+                 <br/>
+                 <button class="uploadtxt btn btn-sm">上传</button>
+                 <input type="file" class="uploadbutton" [upload]="getUploadAddr(flag.id)" (success)="upSuccess($event)" />
+                </li>
+            </ul>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>

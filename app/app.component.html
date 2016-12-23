@@ -1,0 +1,20 @@
+﻿<div class="navbar navbar-default navbar-fixed-top">
+    <div class="warn"  *ngIf="warn.isShow">
+        <div class="warn-content " [ngClass]="{'warn-succ':warn.type=='succ','warn-fail':warn.type=='fail','warn-loading':warn.type=='loading'}" >{{warn.content}}</div>
+    </div>
+    <ol class="breadcrumb">
+        <li id="home1"><a href="javascript:void(0)" [routerLink]="['/']">首页</a></li>
+        <li *ngFor="let nav of bread.getList()" class="active">
+            <a *ngIf="nav.url!='#'" [routerLink]="[nav.url]"><span>{{nav.name}}</span></a>
+            <span *ngIf="nav.url=='#'">{{nav.name}}</span>
+        </li>
+    </ol>
+</div>
+
+<div>
+    <div class="container-fluid page-content">
+    <a [routerLink]="['/account']">Account</a>
+     <a [routerLink]="['/items']">Items</a>
+        <a [routerLink]="['/bee']">Bee</a>
+    <router-outlet></router-outlet></div>
+</div>

@@ -1,0 +1,269 @@
+﻿<html>
+  <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">      
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta content="black" name="apple-mobile-web-app-status-bar-style">   
+  <meta name="format-detection" content="telephone=no"> 
+  <meta http-equiv="x-rim-auto-match" content="none">
+  <meta charset="UTF-8">
+	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://51helper.com/styles/base.css">
+  </head>
+  <body>
+      <style>
+          .messages{
+              line-height:32px;
+          }
+          .upload-uicon{
+              width:100px;
+              overflow:hidden;
+              height:100px;
+              border:1px solid #808080;
+              position:relative;
+          }
+          .upload-uicon img{
+                width:100px;
+           }
+          .upload-uicon input[type="file"]{
+            opacity:0;
+            height:100%;
+            width:100%;
+            position:absolute;
+            top:0px;
+            left:0px;
+          }
+          .message-box {
+              
+            position:fixed;
+            right:0;
+            top:32px;
+            z-index:99999;
+            background:#fff;
+            border:1px solid #dfdfdf;
+            width:240px;
+            padding:4px;
+          }
+          .message-item {
+            margin-bottom:4px;
+            background:#f2f2f2;
+            padding:4px;
+            position:relative;
+           }
+            .message-item .close {
+            top:2px;
+            right:2px;
+            font-size:50%;
+            cursor:pointer;
+            }
+            .message-item:last-child {
+               margin:-4px;
+               margin-top:4px;
+              }
+          .message-txt{
+               vertical-align:top;
+               padding-top:4px;
+               padding-left:12px;
+               display:inline-table;
+              
+               
+          }
+           .gallery{
+              width:240px;
+              overflow:hidden;
+              height:200px;
+              border:1px solid #808080;
+              position:relative;
+           }
+       
+      
+      .gallery input[type="file"]{
+            opacity:0;
+            height:100%;
+            width:100%;
+            position:absolute;
+            top:0px;
+            left:0px;
+          }
+          .warn{
+              text-align:center;
+              background-color:yellowgreen;
+              width:200px;
+              height:40px;
+          }
+      </style>
+        
+      <div class="container">
+          <div class="navbar navbar-default navbar-fixed-top">
+              
+            <div class="warn">loading ....</div>
+          </div>
+              <div>
+                  <table class="table table-bordered ">
+                      <tr>
+                          <td class="gallery"><input type="file" /></td>
+                          <td class="gallery"><input type="file" /></td>
+                          <td class="gallery"><input type="file" /></td>
+                          <td class="gallery"><input type="file" /></td>
+                      </tr>
+
+                  </table>
+              </div>
+              <div class="message-box">
+                  <div class="message-item text-center">
+                      没有休息
+                  </div>
+
+                  <div class="message-item">
+                      <span class="close">x</span>
+                      <img src="../images/users/u166.png" class="img-circle" width="40px;" />
+                      <span class="message-txt"> hello asdklajdfl<br /> sdfasdf</span>
+                  </div>
+                  <div class="message-item">
+                      <img src="../images/users/u166.png" class="img-circle" width="40px;" />
+                      <span class="message-txt"> hello asdklajdfl<br /> sdfasdf</span>
+                  </div>
+                  <div class="message-item">
+                      <img src="../images/users/u166.png" class="img-circle" width="40px;" />
+                      <span class="message-txt"> hello asdklajdfl<br /> sdfasdf</span>
+                  </div>
+                  <div class="message-item">
+                      <img src="../images/users/u166.png" class="img-circle" width="40px;" />
+                      <span class="message-txt"> hello asdklajdfl<br /> sdfasdf</span>
+                  </div>
+                  <div class="message-item">
+                      <img src="../images/users/u166.png" class="img-circle" width="40px;" />
+                      <span class="message-txt"> hello asdklajdfl<br /> sdfasdf</span>
+                  </div>
+                  <div class="message-item text-center message-last">
+                      刷新
+                  </div>
+              </div>
+              <div class="input-group">
+                  <span class="input-group-addon">@</span>
+                  <input type="text" class="form-control" placeholder="Twitterhandle">
+              </div>
+
+              <div class="form-group">
+                  <label></label>
+                  <input type="text" [(ngModel)]="forum.title" class="form-control" placeholder="请输入主题" />
+              </div>
+
+              <div class="form-group">
+                  <label></label>
+                  <div class="radio">
+                      <label><input type="radio" /> 提问</label>
+                      <label><input type="radio" /> 分享</label>
+                  </div>
+              </div>
+
+              <div class="am-input-group am-input-group-lg">
+                  <span class="am-input-group-label">@</span>
+                  <input type="text" class="am-form-field" placeholder="Username">
+              </div>
+              <div class="upload-uicon">
+                  <img src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png" />
+                  <input type="file" [upload]="headimg" />
+              </div>
+          <table>
+              <tr>
+
+                  <td colspan="15">
+
+                      <button class="btn btn-sm">畅销</button>
+                      <button class="btn btn-sm">新品</button>
+                  </td>
+              </tr>
+          </table>
+              <div class="alert alert-success" role="alert">恭喜您操作成功！</div>
+              <div class="alert alert-info" role="alert">请输入正确的密码</div>
+              <div class="alert alert-warning" role="alert">您已操作失败两次，还有最后一次机会</div>
+              <div class="alert alert-danger" role="alert">对不起，您输入的密码有误</div>
+
+
+              <ul class="list-group messages">
+                  <li class="list-group-item">揭开CSS3的面纱</li>
+                  <li class="list-group-item">CSS3选择器</li>
+                  <li class="list-group-item">CSS3边框</li>
+                  <li class="list-group-item">CSS3背景</li>
+                  <li class="list-group-item">
+                      CSS3文本
+                      <span class="right">
+                          <button class="btn btn-sm btn-info">回复</button>
+                          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                              操作
+                              <span class="caret"></span>
+                          </button>
+                          <ul class="dropdown-menu">
+                              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">下拉菜单项</a></li>
+                              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">下拉菜单项</a></li>
+                              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">下拉菜单项</a></li>
+                              <li role="presentation"><a role="menuitem" tabindex="-1" href="#">下拉菜单项</a></li>
+                          </ul>
+                      </span>
+                  </li>
+              </ul>
+
+              <div class="panel panel-default">
+                  <div class="panel-heading">图解CSS3</div>
+                  <div class="panel-body">
+                      <p>
+                          详细讲解了选择器、边框、背景、文本、颜色、盒模型、伸缩布局盒模型、多列布局、渐变、过渡、动画、媒体、响应Web设计、Web字体等主题下涵盖的所有CSS3新特性
+                      </p>
+                      <table class="table table-bordered">
+                          <thead>
+                              <tr>
+                                  <th>＃</th>
+                                  <th>我的书</th>
+                                  <th>发布时间</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr>
+                                  <td>1</td>
+                                  <td>《图解CSS3》</td>
+                                  <td>2014-07-10</td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
+                  <div class="panel-footer">作者：大漠</div>
+              </div>
+              <div class="btn-group">
+                  <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-step-backward"></span></button>
+                  <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-fast-backward"></span></button>
+                  <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-backward"></span></button>
+                  <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-play"></span></button>
+                  <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-pause"></span></button>
+                  <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-stop"></span></button>
+                  <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-forward "></span></button>
+                  <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-fast-forward"></span></button>
+                  <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-step-forward"></span></button>
+              </div>
+
+              <div class="btn-wrap">
+                  <div class="btn-group btn-group-justified">
+                      <a class="btn btn-default" href="#">首页</a>
+                      <a class="btn btn-default" href="#">产品展示</a>
+                      <a class="btn btn-default" href="#">案例分析</a>
+                      <a class="btn btn-default" href="#">联系我们</a>
+                  </div>
+              </div>
+
+              <button class="btn btn-primary btn-lg" type="button">大型按钮.btn-lg</button>
+              <button class="btn btn-primary" type="button">正常按钮</button>
+              <button class="btn btn-primary btn-sm" type="button">小型按钮.btn-sm</button>
+              <button class="btn btn-primary btn-xs" type="button">超小型按钮.btn-xs</button>
+
+
+              <button class="btn" type="button">基础按钮.btn</button>
+              <button class="btn btn-default" type="button">默认按钮.btn-default</button>
+              <button class="btn btn-primary" type="button">主要按钮.btn-primary</button>
+              <button class="btn btn-success" type="button">成功按钮.btn-success</button>
+              <button class="btn btn-info" type="button">信息按钮.btn-info</button>
+              <button class="btn btn-warning" type="button">警告按钮.btn-warning</button>
+              <button class="btn btn-danger" type="button">危险按钮.btn-danger</button>
+              <button class="btn btn-link" type="button">链接按钮.btn-link</button>
+          </div>
+  </body>
+</html>

@@ -1,0 +1,92 @@
+﻿<table class="table">
+    <tbody *ngIf="res">
+        <tr *ngFor="let item of res.items" (click)="curr=item">
+            <td>{{item.Name}}</td>
+        </tr>
+    </tbody>
+</table>
+<style>
+    .attrs dl{
+        border:1px solid #ff6a00;
+        padding:2px 4px;
+        float:left;
+        width:160px;
+        margin-right:4px;
+    }
+
+     .attrs dl dt{
+         color:#dfdfdf;
+
+     }
+
+     .row{
+         clear:both;
+     }
+</style>
+
+<div *ngIf="curr">
+
+    <h3>{{curr.Name}}</h3>
+    <div class="row">
+        <h3>价格:</h3>
+        <div class="attrs">
+            <dl>
+                <dt>价格:</dt>
+                <dd>{{curr.Price}}</dd>
+            </dl>
+
+            <dl>
+                <dt>原价:</dt>
+                <dd><del>{{curr.OldPrice}}</del></dd>
+            </dl>
+        </div>
+    </div>
+    <div class="row">
+        <h3>颜色:</h3>
+        <div class="attrs">
+            <dl *ngFor="let color of curr.Colors">
+                <dd>{{color}}</dd>
+            </dl>
+        </div>
+        </div>
+    <div class="row">
+        <h3>尺寸:</h3>
+        <div class="attrs">
+            <dl *ngFor="let size of curr.Sizes">
+                <dd>{{size}}</dd>
+            </dl>
+        </div>
+    </div>
+    <div class="row">
+        <h3>属性:</h3>
+        <div class="attrs">
+            <dl *ngFor="let attr of curr.Attrs">
+                <dt>{{attr.Name}}:</dt>
+                <dd>{{attr.Value}}</dd>
+            </dl>
+        </div>
+        </div>
+
+
+<div class="row">
+    <h3>图片:</h3>
+    <table class="table">
+       <thead>
+           <tr>
+               <th>图片</th>
+               <th>本地名称</th>
+               <th>ID</th>
+           </tr>
+       </thead>
+        <tbody>
+            <tr *ngFor="let image of curr.Images">
+                <td><img [src]="image.Src" width="120" /></td>
+                <td>{{image.Name}}</td>
+                <td>{{image.Id}}</td>
+            </tr>
+        </tbody>
+    </table>
+   
+</div>
+
+    </div>

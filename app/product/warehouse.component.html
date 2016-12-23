@@ -1,0 +1,63 @@
+﻿
+<div *ngIf="curr_image" [previewimage]="curr_image"></div>
+<div class="container">
+    <style>
+        .preview-images li{
+           float:left;
+           margin-right:6px;
+           margin-bottom:2px;
+           cursor:pointer;
+        }
+
+        .preview-images li img{
+            width:120px;
+        }
+
+        .preview-images li p{
+             text-align:center;
+        }
+    </style>
+   
+    <div class="input-group" *ngIf="item_id==0">
+        <input class="form-control" [(ngModel)]="down_url" placeholder="请拷贝地址到这里..." />
+        <samp class="input-group-addon btn" (click)="donwnload()" >下载</samp>
+    </div>
+    
+    <div *ngIf="item_id>0 && detail">
+
+        <div class="form-group">
+            <label>购买地址<a href="{{detail.buyAddr}}" target="_blank">浏览</a></label>
+            <div>
+              <input class="form-control" [(ngModel)]="detail.buyAddr"/> 
+            </div>
+            <div style="clear:both"></div>
+        </div>
+     
+        <div class="form-group">
+            <label>添加时间</label>
+            <div>
+                <input class="form-control" [(ngModel)]="detail.addtime" />
+            </div>
+            <div style="clear:both"></div>
+        </div>
+        <div class="form-group">
+            <label>所有主图</label>
+            <div>
+                <ul class="preview-images">
+                    <li *ngFor="let img of detail.images" (click)="openImage(img)" ><img src="/res/warehouse/images/{{img}}"/></li>
+                </ul>
+            </div>
+            <div style="clear:both"></div>
+        </div>
+        <div class="form-group">
+            <label>SKU 图片</label>
+            <div>
+                <div class="alert" *ngIf="!detail.sukImages">亲，没有发现SKU图片</div>
+                <ul class="preview-images">
+                    <li *ngFor="let img of detail.sukImages" (click)="openSkuImage(img)" ><img src="/res/warehouse/images/{{img.localPreview}}" /><p>{{img.name}}</p></li>
+                </ul>
+            </div>
+            <div style="clear:both"></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,85 @@
+﻿<style>
+    .moduls-nav {
+        margin-top: -10px;
+        padding: 4px 8px;
+        margin-bottom: 4px;
+        background-color: #f2f2f2;
+        border-bottom: 1px solid #dfdfdf;
+    }
+
+        .moduls-nav li {
+            border: 1px solid #f2f2f2;
+            float: left;
+            padding: 4px 8px;
+            margin-right: 8px;
+        }
+
+    .lat {
+        padding: 2px 4px;
+        margin-right: 2px;
+        cursor: pointer;
+    }
+
+    .now {
+        background-color: bisque;
+    }
+</style>
+<div style="height:90%">
+<div  [style.height]="(100-deitalHeight)+'%'" style="overflow-y:auto;">
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <td colspan="15">
+                <button class="btn btn-sm" (click)="selectAll()">全选</button>
+                <button class="btn btn-sm"  (click)="create()">创建</button>
+                <span *ngIf="item_ids.length>0 && search.tag!='is_under' ">
+                    <button class="btn btn-sm" (click)="addtobestselling()">畅销</button>
+                    <button class="btn btn-sm" (click)="addtonewarrivals()">新品</button>
+                    <button class="btn btn-sm" (click)="setunder()">下架</button>
+                    <button class="btn btn-sm" (click)="setunder()">下架</button>
+                    <button class="btn btn-sm" (click)="resize()">生成缩略图</button>
+                </span>
+                <span *ngIf="item_ids.length>0 && search.tag=='is_under'">
+                    <button class="btn btn-sm" (click)="setupper()">上架</button>
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <th style="width:20px;" valign="top"><input (click)="selectAll()" type="checkbox"/></th>
+            <th>产品名称</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of items let index=index" (click)="showMod(item)"  style="cursor:pointer;">
+            <td style="width:20px;" valign="top"><input type="checkbox" [value]="item.id" (change)="onSelect(index,item)" [checked]="item.selected" /></td>
+            <td><a href="javascript:void(0);">{{item.cn_name}}</a></td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="15"><div class="pull-left" *ngIf="total>0" [page]="1" [rowcount]="rowcount" [total]="total" (callback)="listing($event)"></div></td>
+        </tr>
+    </tfoot>
+</table>
+</div>
+
+<div class="row" [style.height]="(deitalHeight)+'%'"  style="position:fixed;width:100%;bottom:0px;border-top:1px solid #dfdfdf;  background-color:#fff; padding-top:8px;" >
+    <div  class="moduls-nav" >
+        <ul>
+            <li  [class.now]="showProMod == 'base'" ><a href="javascript:void(0);" (click)="goMod(curr_item,'base')">基本信息</a></li>
+            <li [hidden]="curr_item.id==0" [class.now]="showProMod == 'desc'"><a  href="javascript:void(0);" (click)="goMod(curr_item,'desc')" >详情</a></li>
+            <li [hidden]="curr_item.id==0" [class.now]="showProMod == 'warehouse'"> <a href="javascript:void(0);" (click)="goMod(curr_item,'warehouse')" >采购信息</a></li>
+            <li [hidden]="curr_item.id==0" [class.now]="showProMod == 'gallery'" ><a href="javascript:void(0);" (click)="goMod(curr_item,'gallery')">图库</a></li>
+            <li class="pull-right" ><span (click)="deitalHeight=40" class="lat" [class.now]="deitalHeight==40">A</span>
+            <span (click)="deitalHeight=60" class="lat" [class.now]="deitalHeight==60">B</span>
+            <span (click)="deitalHeight=80" class="lat" [class.now]="deitalHeight==80">C</span></li>
+        </ul>
+        <div style="clear:both;"></div>
+    </div>
+
+    <div class="col-md-12" style="overflow-y:auto;width:100%;height:100%;">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+</div>
