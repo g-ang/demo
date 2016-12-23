@@ -1,0 +1,54 @@
+li{
+    list-style-type:none;  
+}
+.hui{
+	color:#888;
+	font-size:80%;
+}
+.badge {
+    display: inline-block;
+    min-width: 19px;
+    padding: 3px 7px;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    background-color: #e5e2e2;
+    border-radius: 10px;
+    font-size:80%;
+}
+.clear{ 
+    clear: both; 
+    float: none; 
+}
+.right{
+	float:right;
+}
+
+.text-right{
+    text-align:right;
+}
+
+.dt-title {
+    color:#666;
+    font-size:14px;
+}
+
+.loading{
+}
+
+.rpullbox{
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
+    background: #f2f2f2;
+    z-index: 99999;
+    width: 40%;
+    min-height: 400px; 
+    height:100%;
+    overflow-y: auto;
+    border: 1px solid #dfdfdf;
+}
