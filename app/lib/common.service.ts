@@ -1,4 +1,4 @@
-import {URLSearchParams, Http, Response, Headers, RequestOptionsArgs} from '@angular/http';
+﻿import {URLSearchParams, Http, Response, Headers, RequestOptionsArgs} from '@angular/http';
 import {Router} from '@angular/router';
 import {Injectable} from '@angular/core';
 import { HttpModule }    from '@angular/http';
@@ -9,7 +9,7 @@ export {PageComponent, Page} from './page.component';
 export {Upload} from './file.directive';
 
 /**
- * ����
+ * 作者
  */
 export class Author {
     nick: string;
@@ -99,7 +99,11 @@ export class CommonService {
         return this.http.post(this.url(url), JSON.stringify(body), options)
             .toPromise()
             .then(res => {
-                var result: Result = res.json()
+                var result: Result = res.json();
+
+                if (!result.isSucc && result.error_code == 10000) {
+                    warn.fail("你还没有登录");
+                }
                 return result;
             });
     }
@@ -109,6 +113,11 @@ export class CommonService {
             .toPromise()
             .then(res => {
                 var result: Result = res.json();
+
+                if (!result.isSucc && result.error_code == 10000) {
+                    warn.fail("你还没有登录");
+                }
+                
                 return result;
             })
     }

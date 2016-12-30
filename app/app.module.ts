@@ -5,6 +5,7 @@ import { HttpModule }    from '@angular/http';
 import {AccountModule }  from './account/account.module';
 import {ProductModule} from './product/product.module';
 import {BeeModule}   from './bee/bee.module';
+import {IhomeModule}   from './ihome/ihome.module';
 import { FormsModule }   from '@angular/forms';
 
 @NgModule({
@@ -15,6 +16,7 @@ import { FormsModule }   from '@angular/forms';
         AccountModule,
         ProductModule,
         BeeModule,
+        IhomeModule,
     ], 
     declarations: [AppComponent],
     bootstrap: [AppComponent]

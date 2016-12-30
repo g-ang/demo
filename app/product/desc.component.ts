@@ -15,7 +15,7 @@ export class DescComponent {
    
     action = 'preview';  //动作
 
-    @ViewChild('iframe') iframe: ElementRef; //预览iframe
+    @ViewChild('iframe') iframe: ElementRef; //预览iframe 
 
     constructor(private itemService: ItemService, private route: ActivatedRoute) {
        
