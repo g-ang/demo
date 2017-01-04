@@ -15,10 +15,10 @@ export class AccountService extends CommonService {
         super(http);
     }
 
-    create(account: Account): Promise<Result>{
+    create(account: Account, verify_code:string): Promise<Result>{
         let params = this.createParams();
- 
-       return  this.post('account.create',account, { search: params });
+
+        return this.post('account.create', { user: account.user, password: account.password, nick: account.nick, verify_code: verify_code }, { search: params });
 	}
 
     login(account: Account):Promise<Result>{
@@ -31,13 +31,13 @@ export class AccountService extends CommonService {
         return this.get('account.logout', { search: params })
 	}
 
-	getInfo() {
+    getInfo(): Promise<Result>{
 		let params=this.createParams()
 		return this.get('account.info',{search:params})
     }
 
     saveField(field:string,value:string) {
-        let params = this.createParams()
+        let params = this.createParams();
         return this.post('account.saveinfo',{field: field, value: value},{ search: params })
     }
 
@@ -47,6 +47,11 @@ export class AccountService extends CommonService {
 
     repassword(newpassword: string, oldpassword: string) {
         
+    }
+
+    sendRegisterCode(email: string): Promise<Result> {
+        let params = this.createParams();
+        return this.post('account.sendregistercode', { email: email, }, { search: params })
     }
 
     messages(){

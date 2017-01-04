@@ -1,21 +1,36 @@
-﻿<div class="navbar navbar-default navbar-fixed-top">
+﻿<style>
+    .account-info-nav{
+        border-radius:0px;
+        background-color:#dfdfdf;
+       height:100%;
+    }
+</style>
+<div class="navbar navbar-default navbar-fixed-top">
     <div class="warn"  *ngIf="warn.isShow">
         <div class="warn-content " [ngClass]="{'warn-succ':warn.type=='succ','warn-fail':warn.type=='fail','warn-loading':warn.type=='loading'}" >{{warn.content}}</div>
     </div>
-    <ol class="breadcrumb">
+    <ol class="breadcrumb  pull-left">
         <li id="home1"><a href="javascript:void(0)" [routerLink]="['/']">首页</a></li>
         <li *ngFor="let nav of bread.getList()" class="active">
             <a *ngIf="nav.url!='#'" [routerLink]="[nav.url]"><span>{{nav.name}}</span></a>
             <span *ngIf="nav.url=='#'">{{nav.name}}</span>
         </li>
+
+      
     </ol>
+    <ol *ngIf="auth.isLogin()" class="breadcrumb pull-right account-info-nav">
+        <li >{{auth.account().nick}}</li>
+        <li><a href="javascript:void(0);" (click)="logout()">退出</a></li>
+     </ol>
 </div>
 
 <div>
     <div class="container-fluid page-content">
     <a [routerLink]="['/account']">Account</a>
      <a [routerLink]="['/items']">Items</a>
-        <a [routerLink]="['/bee']">采集</a>
-        <a [routerLink]="['/ihome']">Ihome</a>
+    <a [routerLink]="['/bee']">采集</a>
+    <a [routerLink]="['/ihome']">Ihome</a>
     <router-outlet></router-outlet></div>
 </div>
+
+<loginbox [isLogin]="auth.isLogin()"></loginbox>

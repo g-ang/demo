@@ -58,8 +58,12 @@ export class Auth {
         return this.session.uid>0 ;
     }
 
-    logout():Promise<Result>{
-        return this.commonService.get("account.logout");
+    logout(): Promise<Result>{
+        return this.commonService.get("account.logout").then((res: Result) => {
+            if (res.isSucc) {
+                this.setAccount(new Account());
+            }
+        });
     }
 }
 
@@ -102,7 +106,8 @@ export class CommonService {
                 var result: Result = res.json();
 
                 if (!result.isSucc && result.error_code == 10000) {
-                    warn.fail("你还没有登录");
+                    warn.fail(`你还没有登录`);
+                    auth.setAccount(new Account());
                 }
                 return result;
             });
@@ -115,7 +120,8 @@ export class CommonService {
                 var result: Result = res.json();
 
                 if (!result.isSucc && result.error_code == 10000) {
-                    warn.fail("你还没有登录");
+                    warn.fail(`你还没有登录`);
+                    auth.setAccount(new Account());
                 }
                 
                 return result;
@@ -173,7 +179,9 @@ class Bread {
 
 export class List {
     private items: any;
-    constructor() { this.items = [];  }
+    constructor() {
+        this.items = [];
+    }
 
     set(data: any[]) {
         this.items = data;
@@ -230,18 +238,6 @@ export class Warn {
 }
 
 export var bread = new Bread();
-
 export var auth = new Auth();
-
 export var warn = new Warn();
 export var isDev = true;
-
-export function resultSuccess(re: any) {
-    var res = re.json();
-    if (res.isSucc) {
-        return true;
-    } else {
-        console.log(res.error_msg);
-    }
-}
-

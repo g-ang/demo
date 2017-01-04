@@ -1,12 +1,13 @@
-﻿import { NgModule }      from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+﻿
 import { AppComponent }   from './app.component';
 import { HttpModule }    from '@angular/http';
 import {AccountModule }  from './account/account.module';
 import {ProductModule} from './product/product.module';
 import {BeeModule}   from './bee/bee.module';
 import {IhomeModule}   from './ihome/ihome.module';
-import { FormsModule }   from '@angular/forms';
+import {LoginBoxComponent} from './account/login.component';
+
+import {NgModule, FormsModule, RouterModule, CommonModule, Routes, BrowserModule, ReactiveFormsModule} from './lib/common.module';
 
 @NgModule({
     imports: [
@@ -17,8 +18,10 @@ import { FormsModule }   from '@angular/forms';
         ProductModule,
         BeeModule,
         IhomeModule,
+        CommonModule,
+        ReactiveFormsModule,
     ], 
-    declarations: [AppComponent],
+    declarations: [AppComponent, LoginBoxComponent],
     bootstrap: [AppComponent]
 })
 export class AppModule {}

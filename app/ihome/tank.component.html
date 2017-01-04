@@ -1,4 +1,20 @@
-﻿<div>
+﻿
 
-    bbbbbb
+<button (click)="linkTank()">连接坦克</button>
+
+
+<div  *ngIf="tank">
+    <p *ngFor="let msg of tank.messages">{{msg}}</p>
+    <input [(ngModel)]="tank.cmmand"/>
+    <button (click)="tank.send()">发送</button>
 </div>
+
+
+
+
+<button (click)="linkCustomer()">连接</button>
+<div *ngIf="customer">
+    顾客
+    <p *ngFor="let msg of customer.messages">{{msg}}</p>
+</div>
+
