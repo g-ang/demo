@@ -1,20 +1,124 @@
-﻿
+﻿<style>
+    .tank{
+        width:220px;
+    }
+.tank img.left{
+   transform:rotate(-90deg);
+}
+.tank img.right{
+   transform:rotate(-270deg);
+}
+.tank img.reverse{
+   transform:rotate(-180deg);
+}
 
-<button (click)="linkTank()">连接坦克</button>
+.tank img.driving{
+   transform:rotate(0deg);
+}
+
+.tank li a{
+    clear:both;
+}
+.tank li{
+  
+    padding:10px;
+    float:left;
+}
+
+.tank li.list{
+      border:1px dashed #dfdfdf;
+}
+
+.messages{
+    position:fixed;
+    left:0px;
+    width:240px;
+    padding:4px 6px;
+    height:240px;
+    background:#888;
+    opacity:0.6;
+    bottom:0px;
+    color:maroon;
+    overflow-y:auto;
+    text-align:left;
+}
 
 
-<div  *ngIf="tank">
-    <p *ngFor="let msg of tank.messages">{{msg}}</p>
-    <input [(ngModel)]="tank.cmmand"/>
-    <button (click)="tank.send()">发送</button>
-</div>
+</style>
 
+<div class="row">
+    
+    <div *ngIf="customer">
+        <div class="tank">
+            <ul>
+                <li><h3>坦克列表<button class="btn">创建</button></h3></li>
+                <li *ngFor="let t of customer.tanks" class="list">
+                    <a href="javaScript:void(0);" (click)="customer.connect_tank(customer,t)" > <img class="{{t.gear}}" src="/images/{{t.icon}}" onerror="this.src = '/images/tank.png'"/> </a>
+                </li>
+            </ul>
+            <div class="clear"></div>
+        </div>
+        <div class="messages">
+            <ul>
+                <li *ngFor="let msg of customer.messages">{{msg}}</li>
+            </ul>
+        </div>
 
+        <div *ngIf="customer.tank">
+            <button (click)="customer.tank.left()">左转</button>
+            <button (click)="customer.tank.right()">右转</button>
+            <button (click)="customer.tank.reverse()">倒退</button>
+            <button (click)="customer.tank.driving()">前进</button>
+            <button (click)="customer.tank.parking()">停</button>
+            <ul>
+                <li (click)="customer.tank.setSpeed(20)">20码</li>
+                <li (click)="customer.tank.setSpeed(40)">40码</li>
+                <li (click)="customer.tank.setSpeed(60)">60码</li>
+                <li (click)="customer.tank.setSpeed(80)">80码</li>
+                <li (click)="customer.tank.setSpeed(100)">100码</li>
+            </ul>
+        </div>
+    </div>
 
-
-<button (click)="linkCustomer()">连接</button>
-<div *ngIf="customer">
-    顾客
-    <p *ngFor="let msg of customer.messages">{{msg}}</p>
-</div>
-
+  
+    <div *ngIf="mod && mod=='createtank'">
+   
+        <form>
+            <div class="form-group">
+                <label>编号</label>
+                <input type="text" [(ngModel)]="tank.name" name="tank.name" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>左轮速度</label>
+                <input type="text" [(ngModel)]="tank.lspeed" name="tank.lspeed" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>右轮速度</label>
+                <input type="text" [(ngModel)]="tank.rspeed" name="tank.rspeed" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>In1</label>
+                <input type="text" [(ngModel)]="tank.in1" name="tank.in1"  class="form-control" />
+                <label>In2</label>
+                <input type="text" [(ngModel)]="tank.in2" name="tank.in2" class="form-control" />
+                <label>En1</label>
+                <input type="text" [(ngModel)]="tank.en1" name="tank.en1" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>In3</label>
+                <input type="text" [(ngModel)]="tank.in3" name="tank.in3" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>In4</label>
+                <input type="text"  [(ngModel)]="tank.in4" name="tank.in4" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>En2</label>
+                <input type="text" [(ngModel)]="tank.en2" name="tank.en2"  class="form-control" />
+            </div>
+            <div class="form-group">
+                <button (click)="tank.edit()">更改</button>
+            </div>
+        </form>
+    </div>
+ </div>

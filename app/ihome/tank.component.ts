@@ -1,22 +1,21 @@
 ﻿import {Component} from '@angular/core';
-import {Tank, Customer, Receive} from './tank.server';
+import {Tank, Customer, Receive, TankClient, TankServer} from './tank.server';
 @Component({
     templateUrl:'/app/ihome/tank.component.html'
 })
     
 export class TankComponent {
-    tank: Tank;
+    tank=new Tank();
     customer: Customer;
-    constructor() {
+    mod: string;
 
-    }
-
-    linkTank() {
-        this.tank = new Tank();
-    }
-
-    linkCustomer() {
+    constructor(tankServer:TankServer) {
         this.customer = new Customer();
-      
     }
+
+    createTank() {
+        this.mod = 'createtank';
+    }
+
+  
 }

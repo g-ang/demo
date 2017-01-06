@@ -2,6 +2,7 @@
 
 import {IhomeComponent} from './ihome.component';
 import {TankComponent} from './tank.component';
+import {TankServer} from './tank.server';
 import { CKEditorModule } from 'ng2-ckeditor';
 const routers: Routes = [
     {
@@ -19,7 +20,7 @@ const routers: Routes = [
         TankComponent,
     ],
     providers: [
-     
+        TankServer
     ],
     exports: [RouterModule]
 
