@@ -4,7 +4,6 @@ import { AccountService, auth} from './account.service';
 import { LayoutComponent} from './layout.component';
 import { CenterComponent} from './center.component';
 import { LoginComponent} from './login.component';
-import {RegisterComponent} from './register.component';
 import {MemoComponent} from './memo.component';
 
 
@@ -14,7 +13,6 @@ const routers: Routes = [
         children: [
             { path: '', component: CenterComponent,pathMatch:'full' },
             { path: 'login', component: LoginComponent },
-            { path: 'register', component: RegisterComponent },
             { path: 'memo', component: MemoComponent },
 
         ]
@@ -35,7 +33,6 @@ const routers: Routes = [
         LoginComponent,
       
         CenterComponent,
-        RegisterComponent,
         MemoComponent
     ],
     

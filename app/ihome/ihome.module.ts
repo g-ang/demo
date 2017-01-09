@@ -1,14 +1,17 @@
 ﻿import {NgModule, FormsModule, RouterModule, CommonModule, Routes, BrowserModule, AuthorComponent} from './../lib/common.module';
 
 import {IhomeComponent} from './ihome.component';
-import {TankComponent} from './tank.component';
+import {TankComponent, TankCreateComponent} from './tank.component';
 import {TankServer} from './tank.server';
 import { CKEditorModule } from 'ng2-ckeditor';
 const routers: Routes = [
     {
         path: 'ihome', component: IhomeComponent, children: [
-            { path: 'tank', component: TankComponent },
-           
+            {
+                path: 'tank', component: TankComponent, children: [
+                    { path: 'create', component: TankCreateComponent }
+                ]
+            },
         ]
     },
 ]
@@ -18,6 +21,7 @@ const routers: Routes = [
     declarations: [
         IhomeComponent,
         TankComponent,
+        TankCreateComponent,
     ],
     providers: [
         TankServer

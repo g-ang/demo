@@ -44,81 +44,85 @@
 }
 
 
+    .moduls-nav {
+        margin-top: -10px;
+        padding: 4px 8px;
+        margin-bottom: 4px;
+        background-color: #f2f2f2;
+        border-bottom: 1px solid #dfdfdf;
+    }
+
+        .moduls-nav li {
+            border: 1px solid #f2f2f2;
+            float: left;
+            padding: 4px 8px;
+            margin-right: 8px;
+        }
+
+    .lat {
+        padding: 2px 4px;
+        margin-right: 2px;
+        cursor: pointer;
+    }
+
+    .now {
+        background-color: bisque;
+    }
 </style>
+
+
 
 <div class="row">
     
-    <div *ngIf="customer">
+    <div *ngIf="conn">
         <div class="tank">
             <ul>
-                <li><h3>坦克列表<button class="btn">创建</button></h3></li>
-                <li *ngFor="let t of customer.tanks" class="list">
-                    <a href="javaScript:void(0);" (click)="customer.connect_tank(customer,t)" > <img class="{{t.gear}}" src="/images/{{t.icon}}" onerror="this.src = '/images/tank.png'"/> </a>
+                <li><h3>坦克列表<button class="btn" (click)="create()">创建</button></h3></li>
+                <li *ngFor="let t of conn.tanks" class="list">
+                    <a href="javaScript:void(0);" (click)="conn.connect_tank(t)" > <img class="{{t.gear}}" src="/images/{{t.icon}}" onerror="this.src = '/images/tank.png'"/> </a>
                 </li>
             </ul>
             <div class="clear"></div>
         </div>
         <div class="messages">
             <ul>
-                <li *ngFor="let msg of customer.messages">{{msg}}</li>
+                <li *ngFor="let msg of conn.messages">{{msg}}</li>
             </ul>
         </div>
 
-        <div *ngIf="customer.tank">
-            <button (click)="customer.tank.left()">左转</button>
-            <button (click)="customer.tank.right()">右转</button>
-            <button (click)="customer.tank.reverse()">倒退</button>
-            <button (click)="customer.tank.driving()">前进</button>
-            <button (click)="customer.tank.parking()">停</button>
+        <div *ngIf="conn.tank">
+            <button (click)="conn.left()">左转</button>
+            <button (click)="conn.right()">右转</button>
+            <button (click)="conn.reverse()">倒退</button>
+            <button (click)="conn.driving()">前进</button>
+            <button (click)="conn.parking()">停</button>
             <ul>
-                <li (click)="customer.tank.setSpeed(20)">20码</li>
-                <li (click)="customer.tank.setSpeed(40)">40码</li>
-                <li (click)="customer.tank.setSpeed(60)">60码</li>
-                <li (click)="customer.tank.setSpeed(80)">80码</li>
-                <li (click)="customer.tank.setSpeed(100)">100码</li>
+                <li (click)="conn.setSpeed(20)">20码</li>
+                <li (click)="conn.setSpeed(40)">40码</li>
+                <li (click)="conn.setSpeed(60)">60码</li>
+                <li (click)="conn.setSpeed(80)">80码</li>
+                <li (click)="conn.setSpeed(100)">100码</li>
             </ul>
         </div>
     </div>
 
-  
-    <div *ngIf="mod && mod=='createtank'">
-   
-        <form>
-            <div class="form-group">
-                <label>编号</label>
-                <input type="text" [(ngModel)]="tank.name" name="tank.name" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label>左轮速度</label>
-                <input type="text" [(ngModel)]="tank.lspeed" name="tank.lspeed" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label>右轮速度</label>
-                <input type="text" [(ngModel)]="tank.rspeed" name="tank.rspeed" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label>In1</label>
-                <input type="text" [(ngModel)]="tank.in1" name="tank.in1"  class="form-control" />
-                <label>In2</label>
-                <input type="text" [(ngModel)]="tank.in2" name="tank.in2" class="form-control" />
-                <label>En1</label>
-                <input type="text" [(ngModel)]="tank.en1" name="tank.en1" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label>In3</label>
-                <input type="text" [(ngModel)]="tank.in3" name="tank.in3" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label>In4</label>
-                <input type="text"  [(ngModel)]="tank.in4" name="tank.in4" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label>En2</label>
-                <input type="text" [(ngModel)]="tank.en2" name="tank.en2"  class="form-control" />
-            </div>
-            <div class="form-group">
-                <button (click)="tank.edit()">更改</button>
-            </div>
-        </form>
-    </div>
  </div>
+
+<div class="row" [style.height]="(deitalHeight)+'%'" [hidden]="deitalHeight==0" style="position:fixed;width:100%;bottom:0px;border-top:1px solid #dfdfdf;  background-color:#fff; padding-top:8px;">
+    <div class="moduls-nav">
+        <ul>
+            <li [class.now]="showProMod == 'create'"><a href="javascript:void(0);" (click)="create()">创建信息</a></li>
+          
+            <li class="pull-right">
+                <span (click)="deitalHeight=40" class="lat" [class.now]="deitalHeight==40">A</span>
+                <span (click)="deitalHeight=60" class="lat" [class.now]="deitalHeight==60">B</span>
+                <span (click)="deitalHeight=80" class="lat" [class.now]="deitalHeight==80">C</span>
+            </li>
+        </ul>
+        <div style="clear:both;"></div>
+    </div>
+
+    <div class="col-md-12" style="overflow-y:auto;width:100%;height:100%;">
+        <router-outlet></router-outlet>
+    </div>
+</div>
