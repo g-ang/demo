@@ -1,0 +1,21 @@
+﻿<div>
+    <form *ngIf="doc" class="form">
+        <div class="form-group">
+            <label>标题</label>
+            <input type="text" [(ngModel)]="doc.title" name="title" class="form-control" placeholder="标题" />
+        </div>
+        <div class="form-group">
+            <label>来源</label>
+            <input type="text" [(ngModel)]="doc.socure_url" name="socure_url" class="form-control" placeholder="来源" />
+        </div>
+        <div class="form-group">
+            <label>内容</label>
+            <ckeditor [(ngModel)]="doc.content" name="content" debounce="500"></ckeditor>
+        </div>
+        <div class="form-group">
+            <label>标签</label>
+           <div [ilabel]="doc.labels" (succ)="labelcall($event)"></div>
+        </div>
+        <button class="btn btn-primary btn-sm" (click)="save()">创建</button>
+    </form>
+</div>

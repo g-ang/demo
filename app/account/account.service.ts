@@ -45,8 +45,9 @@ export class AccountService extends CommonService {
         return this.get(api, { search: params })
     }
 
-    repassword(newpassword: string, oldpassword: string) {
-        
+    repassword(newpassword: string, oldpassword: string): Promise<Result> {
+        let params = this.createParams();
+        return this.post("account.repass", { old_password: oldpassword, password: newpassword }, params);
     }
 
     sendRegisterCode(email: string): Promise<Result> {

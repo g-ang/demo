@@ -1,0 +1,46 @@
+﻿<style>
+#createGroup{
+    margin-bottom:12px;
+}
+#group-search{
+    width:250px;
+}
+.table thead td{
+    background:#f2f2f2; 
+}
+.group_title{
+	font-size:18px;
+	color: #555555;
+}
+.dd{
+	color: #999999;
+	font-size:12px;
+}
+.beizhu{
+    color:#666;
+}
+</style>
+<div>
+<table class="table table-hover ">
+    <thead>
+        <tr>
+            <td colspan="5">
+                <button (click)="create()" id="createGroup" class="btn btn-primary btn-sm">创建讨论组</button>
+            </td>
+        </tr>
+    </thead>
+    <tbody  *ngIf="groups">
+        <tr  *ngFor="let group of groups">
+            <td>
+                <a href="javascript:void(0);" (click)="detail(group)">{{group.name}}</a>
+                <p>{{group.desc}}</p>
+            </td>
+            <td></td>
+            <td class="text-right beizhu"></td>
+        </tr>
+    </tbody>
+    <tfoot>
+    </tfoot>
+</table>
+    <router-outlet></router-outlet>
+</div>

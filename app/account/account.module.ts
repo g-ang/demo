@@ -3,7 +3,7 @@
 import { AccountService, auth} from './account.service';
 import { LayoutComponent} from './layout.component';
 import { CenterComponent} from './center.component';
-import { LoginComponent} from './login.component';
+import {EditPasswordComponent} from './editpassword.component';
 import {MemoComponent} from './memo.component';
 
 
@@ -12,8 +12,8 @@ const routers: Routes = [
         path: 'account', component:LayoutComponent,
         children: [
             { path: '', component: CenterComponent,pathMatch:'full' },
-            { path: 'login', component: LoginComponent },
             { path: 'memo', component: MemoComponent },
+            { path: 'editpass', component: EditPasswordComponent }
 
         ]
     },
@@ -30,10 +30,9 @@ const routers: Routes = [
         CommonModule],
     declarations: [
         LayoutComponent,
-        LoginComponent,
-      
         CenterComponent,
-        MemoComponent
+        MemoComponent,
+        EditPasswordComponent,
     ],
     
 

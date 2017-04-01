@@ -1,0 +1,13 @@
+﻿<div>
+    <form *ngIf="forum" class="form">
+        <div class="form-group">
+            <label>标题</label>
+            <input type="text" [(ngModel)]="forum.title" name="title" class="form-control"/>
+        </div>
+        <div class="form-group">
+            <label>问题描述</label>
+            <ckeditor [(ngModel)]="forum.content" name="content" debounce="500"></ckeditor>
+        </div>
+        <button class="btn btn-primary btn-sm" (click)="save()">创建</button>
+    </form>
+</div>

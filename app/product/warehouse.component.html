@@ -22,9 +22,8 @@
         <input class="form-control" [(ngModel)]="down_url" placeholder="请拷贝地址到这里..." />
         <samp class="input-group-addon btn" (click)="donwnload()" >下载</samp>
     </div>
-    
-    <div *ngIf="item_id>0 && detail">
 
+    <div *ngIf="item_id>0 && detail">
         <div class="form-group">
             <label>购买地址<a href="{{detail.buyAddr}}" target="_blank">浏览</a></label>
             <div>

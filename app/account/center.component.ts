@@ -5,12 +5,11 @@ import {Account} from './account';
 
 @Component({
     templateUrl: '/app/account/center.component.html',
-
 })
 
 export class CenterComponent {
-    account = new Account();
+    account = auth.account();
     constructor(private accountService: AccountService, private router: Router) {
-       
+    
     }
 }

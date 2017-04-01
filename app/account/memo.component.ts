@@ -2,7 +2,6 @@
 import {AccountService, warn, auth, Router, Account} from './account.service';
 
 @Component({
-    moduleId: module.id,
     templateUrl: '/app/account/memo.component.html',
 })
 

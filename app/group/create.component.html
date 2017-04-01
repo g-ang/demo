@@ -1,0 +1,21 @@
+﻿<div>
+    <form *ngIf="group" class="form">
+        <div class="form-group">
+            <label>讨论组名称</label>
+            <input type="text" [(ngModel)]="group.name" name="name" class="form-control" placeholder="请输入讨论组名称" />
+        </div>
+        <div class="form-group">
+            <label>讨论组介绍</label>
+            <ckeditor [(ngModel)]="group.content" name="content" debounce="500"></ckeditor>
+        </div>
+        <div class="form-group">
+            <label>查看权限</label>
+            <select class="form-control" name="read_forum_purview" [(ngModel)]="group.read_forum_purview"><option *ngFor="let r of readFountPurview" [value]="r.id">{{r.title}}</option></select>
+        </div>
+        <div class="form-group">
+            <label>发帖权限</label>
+            <select class="form-control" name="write_forum_purview" [(ngModel)]="group.write_forum_purview"><option *ngFor="let w of writeFountPurview" [value]="w.id">{{w.title}}</option></select>
+        </div>
+        <button class="btn btn-primary btn-sm" (click)="save()">创建</button>
+    </form>
+</div>
