@@ -13,9 +13,8 @@ export class LabelService extends CommonService {
         super(http)
     }
 
-    add(name): Promise<Label>{
+    add(name): Promise<Result>{
         var parame=this.createParams();
-
         return this.post("doc/label/add", { name: name }, { search: parame })
     }
 }

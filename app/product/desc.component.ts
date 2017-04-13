@@ -72,11 +72,8 @@ export class DescComponent {
         });
     }
 
- 
-
     resource() {
         this.action = 'resource';
-       
     }
 
     preview() {
@@ -107,7 +104,6 @@ export class ResourceComponent implements OnInit, OnChanges {
     upload_dir: string; //资源上传地址
 
     items: Resource[]; //资源列表
-
 
     constructor(private itemService: ItemService, private route: ActivatedRoute) { }
 

@@ -29,7 +29,7 @@ export class CreateComponent {
 
     save(){
         console.log(this.doc);
-        this.docSer.save(this.doc).then((re: Result) => {
+        this.docSer.save(this.doc).then((re: any) => {
             if (re.isSucc) {
                 this.doc.id = re.id;
                 warn.succ("保存成功");

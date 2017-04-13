@@ -53,7 +53,7 @@
     <tbody>
         <tr *ngFor="let item of items let index=index" (click)="showMod(item)"  style="cursor:pointer;">
             <td style="width:20px;" valign="top"><input type="checkbox" [value]="item.id" (change)="onSelect(index,item)" [checked]="item.selected" /></td>
-            <td><a href="javascript:void(0);">{{item.cn_name}}</a></td>
+            <td><a href="javascript:void(0);">{{item.name}}</a></td>
         </tr>
     </tbody>
     <tfoot>
@@ -64,7 +64,7 @@
 </table>
 </div>
 
-<div class="row" [style.height]="(deitalHeight)+'%'"  style="position:fixed;width:100%;bottom:0px;border-top:1px solid #dfdfdf;  background-color:#fff; padding-top:8px;" >
+<div class="row" [style.height]="(deitalHeight)+'%'"  style="z-index:99999; position:fixed;width:100%;bottom:0px;border-top:1px solid #dfdfdf;  background-color:#fff; padding-top:8px;" >
     <div  class="moduls-nav" >
         <ul>
             <li  [class.now]="showProMod == 'base'" ><a href="javascript:void(0);" (click)="goMod(curr_item,'base')">基本信息</a></li>
@@ -72,12 +72,11 @@
             <li [hidden]="curr_item.id==0" [class.now]="showProMod == 'warehouse'"> <a href="javascript:void(0);" (click)="goMod(curr_item,'warehouse')" >采购信息</a></li>
             <li [hidden]="curr_item.id==0" [class.now]="showProMod == 'gallery'" ><a href="javascript:void(0);" (click)="goMod(curr_item,'gallery')">图库</a></li>
             <li class="pull-right" ><span (click)="deitalHeight=40" class="lat" [class.now]="deitalHeight==40">A</span>
-            <span (click)="deitalHeight=60" class="lat" [class.now]="deitalHeight==60">B</span>
-            <span (click)="deitalHeight=80" class="lat" [class.now]="deitalHeight==80">C</span></li>
+            <span (click)="deitalHeight=60" class="lat"  [class.now]="deitalHeight==60">B</span>
+            <span (click)="deitalHeight=100" class="lat" [class.now]="deitalHeight==100">C</span></li>
         </ul>
         <div style="clear:both;"></div>
     </div>
-
     <div class="col-md-12" style="overflow-y:auto;width:100%;height:100%;">
         <router-outlet></router-outlet>
     </div>

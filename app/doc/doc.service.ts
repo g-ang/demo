@@ -8,7 +8,7 @@ export class Doc{
     title: string;
     content: string;
     socure_url: string;
-    labels: [];
+    labels= [];
 }
 
 @Injectable()
