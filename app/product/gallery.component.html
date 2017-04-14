@@ -71,11 +71,10 @@
                         <td style="width:120px;"><img class="res-img" [src]="res.addr" /></td>
                         <td>
                             <ul class="res-flags">
-                                <li *ngFor="let flag of res.flags">{{flag.title}}</li>
+                                <li *ngFor="let flag of res.flags">{{flag.title}} </li>
+                                <li *ngIf="item.headimg ==res.name">封面</li>
                             </ul>
                         </td>
-                        <td><div [author]="res.author"></div></td>
-                        <td>{{res.addtime}}</td>
                     </tr>
                 </tbody>
             </table>
