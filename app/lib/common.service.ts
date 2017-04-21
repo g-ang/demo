@@ -94,6 +94,9 @@ export class CommonService {
             if (re.isSucc) {
                 var account: Account = <Account>re.item;
                 auth.setAccount(account);
+            } else if (!re.isSucc && re.error_code == 10000) {
+                warn.fail(`你还没有登录`);
+                auth.setAccount(new Account());
             }
             return auth;
         })

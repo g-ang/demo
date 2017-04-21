@@ -1,35 +1,97 @@
 ﻿<style>
-#createGroup{
-    margin-bottom:12px;
-}
-#group-search{
-    width:250px;
-}
-.table thead td{
-    background:#f2f2f2; 
-}
-.group_title{
-	font-size:18px;
-	color: #555555;
-}
-.dd{
-	color: #999999;
-	font-size:12px;
-}
-.beizhu{
-    color:#666;
-}
+    #createGroup {
+        margin-bottom: 12px;
+    }
+
+    #group-search {
+        width: 250px;
+    }
+
+    .table thead td {
+        background: #f2f2f2;
+    }
+
+    .group_title {
+        font-size: 18px;
+        color: #555555;
+    }
+
+    .dd {
+        color: #999999;
+        font-size: 12px;
+    }
+
+    .beizhu {
+        color: #666;
+    }
+
+        .moduls-nav {
+        margin-top: -10px;
+        padding: 4px 8px;
+        margin-bottom: 4px;
+        background-color: #f2f2f2;
+        border-bottom: 1px solid #dfdfdf;
+    }
+
+        .moduls-nav li {
+            border: 1px solid #f2f2f2;
+            float: left;
+            padding: 4px 8px;
+            margin-right: 8px;
+        }
+
+    .lat {
+        padding: 2px 4px;
+        margin-right: 2px;
+        cursor: pointer;
+    }
+
+    .now {
+        background-color: bisque;
+    }
 </style>
-<div>
-<table class="table table-hover ">
-    <thead>
-        <tr>
-            <td colspan="5">
-                <button (click)="create()" id="createGroup" class="btn btn-primary btn-sm">新建文档</button>
-            </td>
-        </tr>
-    </thead>
-    <tfoot></tfoot>
-</table>
-    <router-outlet></router-outlet>
+<div style="height:90%">
+    <div [style.height]="(100-deitalHeight)+'%'" style="overflow-y:auto;">
+
+
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <td colspan="15">
+                        <button class="btn btn-sm" (click)="selectAll()">全选</button>
+                        <button (click)="create()"  class="btn btn-primary btn-sm">新建文档</button>
+                    </td>
+                </tr>
+                <tr>
+                    <th style="width:20px;" valign="top"><input (click)="selectAll()" type="checkbox" /></th>
+                    <th>标题</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of items let index=index" (click)="showMod(item)" style="cursor:pointer;">
+                    <td style="width:20px;" valign="top"><input type="checkbox" [value]="item.id" (change)="onSelect(index,item)" [checked]="item.selected" /></td>
+                    <td><a href="javascript:void(0);" >{{item.title}}</a></td>
+                </tr>
+            </tbody>
+            <tfoot>
+            </tfoot>
+        </table>
+    </div>
+    <div class="row" [style.height]="(deitalHeight)+'%'" style="z-index:99999; position:fixed;width:100%;bottom:0px;border-top:1px solid #dfdfdf;  background-color:#fff; padding-top:8px;">
+        <div class="moduls-nav">
+            <ul>
+                <li ><a href="javascript:void(0);">基本信息</a></li>
+                <li class="pull-right">
+                    <span (click)="deitalHeight=10" class="lat" [class.now]="deitalHeight==10">A</span>
+                    <span (click)="deitalHeight=60" class="lat" [class.now]="deitalHeight==60">B</span>
+                    <span (click)="deitalHeight=100" class="lat" [class.now]="deitalHeight==100">C</span>
+                </li>
+            </ul>
+            <div style="clear:both;"></div>
+        </div>
+        <div class="col-md-12" style="overflow-y:auto;width:100%;height:100%;">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
 </div>

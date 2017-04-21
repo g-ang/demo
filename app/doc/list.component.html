@@ -29,25 +29,10 @@
 
 <table class="table table-hover">
     <thead>
-        <tr>
-            <td colspan="15">
-                <button class="btn btn-sm" (click)="selectAll()">全选</button>
-                <button class="btn btn-sm"  (click)="create()">创建</button>
-                <span *ngIf="item_ids.length>0 && search.tag!='is_under' ">
-                    <button class="btn btn-sm" (click)="addtobestselling()">畅销</button>
-                    <button class="btn btn-sm" (click)="addtonewarrivals()">新品</button>
-                    <button class="btn btn-sm" (click)="setunder()">下架</button>
-                    <button class="btn btn-sm" (click)="setunder()">下架</button>
-                    <button class="btn btn-sm" (click)="resize()">生成缩略图</button>
-                </span>
-                <span *ngIf="item_ids.length>0 && search.tag=='is_under'">
-                    <button class="btn btn-sm" (click)="setupper()">上架</button>
-                </span>
-            </td>
-        </tr>
+  
         <tr>
             <th style="width:20px;" valign="top"><input (click)="selectAll()" type="checkbox"/></th>
-            <th>产品名称</th>
+            <th>标题</th>
         </tr>
     </thead>
     <tbody>
@@ -69,8 +54,7 @@
         <ul>
             <li  [class.now]="showProMod == 'base'" ><a href="javascript:void(0);" (click)="goMod(curr_item,'base')">基本信息</a></li>
             <li [hidden]="curr_item.id==0" [class.now]="showProMod == 'desc'"><a  href="javascript:void(0);" (click)="goMod(curr_item,'desc')" >详情</a></li>
-            <li [hidden]="curr_item.id==0" [class.now]="showProMod == 'warehouse'"><a href="javascript:void(0);" (click)="goMod(curr_item,'warehouse')" >采购信息</a></li>
-            <li [hidden]="curr_item.id==0" [class.now]="showProMod == 'gallery'" ><a href="javascript:void(0);" (click)="goMod(curr_item,'gallery')">图库</a></li>
+ 
             <li class="pull-right" ><span (click)="deitalHeight=40" class="lat" [class.now]="deitalHeight==40">A</span>
             <span (click)="deitalHeight=60" class="lat"  [class.now]="deitalHeight==60">B</span>
             <span (click)="deitalHeight=100" class="lat" [class.now]="deitalHeight==100">C</span></li>

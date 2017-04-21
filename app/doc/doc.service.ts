@@ -8,7 +8,8 @@ export class Doc{
     title: string;
     content: string;
     socure_url: string;
-    labels= [];
+    labels = [];
+    selected = false;
 }
 
 @Injectable()
@@ -21,5 +22,15 @@ export class DocService extends CommonService {
     save(doc: Doc):Promise<Result> {
         var params=this.createParams();
         return this.post("doc/create", doc,{ search: params })
+    }
+
+
+    rows(param: URLSearchParams): Promise<Result> {
+        return this.get('doc/listing', { search: param });
+    }
+
+    getDetail(id: number): Promise<Result> {
+        var params = this.createParams();
+        return this.get(`doc/get/${id}`, params);
     }
 }
